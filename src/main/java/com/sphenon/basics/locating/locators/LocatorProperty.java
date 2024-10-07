@@ -1,7 +1,7 @@
 package com.sphenon.basics.locating.locators;
 
 /****************************************************************************
-  Copyright 2001-2018 Sphenon GmbH
+  Copyright 2001-2024 Sphenon GmbH
 
   Licensed under the Apache License, Version 2.0 (the "License"); you may not
   use this file except in compliance with the License. You may obtain a copy
@@ -126,6 +126,10 @@ public class LocatorProperty extends Locator {
         }
 
         Class oclass = object.getClass();
+        if (oclass == Class.class) {
+            oclass = (Class) object;
+            object = null;
+        }
 
         if (oclass.isAnonymousClass()) {
             if (    oclass.getSuperclass() == java.lang.Object.class
@@ -177,15 +181,15 @@ public class LocatorProperty extends Locator {
             switch (start_index) {
                 case  0: // default, try them all
 
-                case  1: try { return invoke(context, method(context, oclass, jcb, code, cached_class_indices, value,  1, "tryGet" + value, CallContext.class), object, jcb, context); } catch (NoSuchMethodException msme) { }
-                case  2: try { return invoke(context, method(context, oclass, jcb, code, cached_class_indices, value,  2, "tryGet" + value), object, jcb); } catch (NoSuchMethodException msme) { }
-                case  3: try { return invoke(context, method(context, oclass, jcb, code, cached_class_indices, value,  3, "get" + value, CallContext.class), object, jcb, context); } catch (NoSuchMethodException msme) { }
-                case  4: try { return invoke(context, method(context, oclass, jcb, code, cached_class_indices, value,  4, "get" + value), object, jcb); } catch (NoSuchMethodException msme) { }
-                case  5: try { return invoke(context, method(context, oclass, jcb, code, cached_class_indices, value,  5, "tryGet", CallContext.class, String.class), object, jcb, context, value); } catch (NoSuchMethodException msme) { }
-                case  6: try { return invoke(context, method(context, oclass, jcb, code, cached_class_indices, value,  6, "tryGet", String.class), object, jcb, value); } catch (NoSuchMethodException msme) { }
-                case  7: try { return invoke(context, method(context, oclass, jcb, code, cached_class_indices, value,  7, "get", CallContext.class, String.class), object, jcb, context, value); } catch (NoSuchMethodException msme) { }
-                case  8: try { return invoke(context, method(context, oclass, jcb, code, cached_class_indices, value,  8, "get", String.class), object, jcb, value); } catch (NoSuchMethodException msme) { }
-                case  9: if (java.util.Map.class.isAssignableFrom(oclass)) {
+                case  1: try { return invoke(context, oclass, method(context, oclass, jcb, code, cached_class_indices, value,  1, "tryGet" + value, CallContext.class), object, jcb, context); } catch (NoSuchMethodException msme) { }
+                case  2: try { return invoke(context, oclass, method(context, oclass, jcb, code, cached_class_indices, value,  2, "tryGet" + value), object, jcb); } catch (NoSuchMethodException msme) { }
+                case  3: try { return invoke(context, oclass, method(context, oclass, jcb, code, cached_class_indices, value,  3, "get" + value, CallContext.class), object, jcb, context); } catch (NoSuchMethodException msme) { }
+                case  4: try { return invoke(context, oclass, method(context, oclass, jcb, code, cached_class_indices, value,  4, "get" + value), object, jcb); } catch (NoSuchMethodException msme) { }
+                case  5: try { return invoke(context, oclass, method(context, oclass, jcb, code, cached_class_indices, value,  5, "tryGet", CallContext.class, String.class), object, jcb, context, value); } catch (NoSuchMethodException msme) { }
+                case  6: try { return invoke(context, oclass, method(context, oclass, jcb, code, cached_class_indices, value,  6, "tryGet", String.class), object, jcb, value); } catch (NoSuchMethodException msme) { }
+                case  7: try { return invoke(context, oclass, method(context, oclass, jcb, code, cached_class_indices, value,  7, "get", CallContext.class, String.class), object, jcb, context, value); } catch (NoSuchMethodException msme) { }
+                case  8: try { return invoke(context, oclass, method(context, oclass, jcb, code, cached_class_indices, value,  8, "get", String.class), object, jcb, value); } catch (NoSuchMethodException msme) { }
+                case  9: if (object != null && java.util.Map.class.isAssignableFrom(oclass)) {
                              if (jcb != null) {
                                  if (code != null) { code[2] = "MAP"; } else { jcb.append(ds_code); }
                                  jcb.append("o = ((Map) o).get(\"" + value + "\");");
@@ -202,32 +206,32 @@ public class LocatorProperty extends Locator {
                              is_index_1  = index_re.matches(context, value_1);
                          }
 
-                case 10: if (is_member_1) { try { return invoke(context, method(context, oclass, jcb, code, cached_class_indices, value, 10, "tryGet" + value, CallContext.class, String.class), object, jcb, context, value_1); } catch (NoSuchMethodException msme) { } }
-                case 11: if (is_member_1) { try { return invoke(context, method(context, oclass, jcb, code, cached_class_indices, value, 11, "tryGet" + value, String.class), object, jcb, value_1); } catch (NoSuchMethodException msme) { } }
-                case 12: if (is_member_1) { try { return invoke(context, method(context, oclass, jcb, code, cached_class_indices, value, 12, "get" + value, CallContext.class, String.class), object, jcb, context, value_1); } catch (NoSuchMethodException msme) { } }
-                case 13: if (is_member_1) { try { return invoke(context, method(context, oclass, jcb, code, cached_class_indices, value, 13, "get" + value, String.class), object, jcb, value_1); } catch (NoSuchMethodException msme) { } }
+                case 10: if (is_member_1) { try { return invoke(context, oclass, method(context, oclass, jcb, code, cached_class_indices, value, 10, "tryGet" + value, CallContext.class, String.class), object, jcb, context, value_1); } catch (NoSuchMethodException msme) { } }
+                case 11: if (is_member_1) { try { return invoke(context, oclass, method(context, oclass, jcb, code, cached_class_indices, value, 11, "tryGet" + value, String.class), object, jcb, value_1); } catch (NoSuchMethodException msme) { } }
+                case 12: if (is_member_1) { try { return invoke(context, oclass, method(context, oclass, jcb, code, cached_class_indices, value, 12, "get" + value, CallContext.class, String.class), object, jcb, context, value_1); } catch (NoSuchMethodException msme) { } }
+                case 13: if (is_member_1) { try { return invoke(context, oclass, method(context, oclass, jcb, code, cached_class_indices, value, 13, "get" + value, String.class), object, jcb, value_1); } catch (NoSuchMethodException msme) { } }
 
-                case 14: if (is_index_1) { try { return invoke(context, method(context, oclass, jcb, code, cached_class_indices, value, 14, "tryGet" + value, CallContext.class, Integer.class), object, jcb, context, Integer.parseInt(value_1)); } catch (NoSuchMethodException msme) { } }
-                case 15: if (is_index_1) { try { return invoke(context, method(context, oclass, jcb, code, cached_class_indices, value, 15, "tryGet" + value, CallContext.class, int.class), object, jcb, context, Integer.parseInt(value_1)); } catch (NoSuchMethodException msme) { } }
-                case 16: if (is_index_1) { try { return invoke(context, method(context, oclass, jcb, code, cached_class_indices, value, 16, "get" + value, CallContext.class, Integer.class), object, jcb, context, Integer.parseInt(value_1)); } catch (NoSuchMethodException msme) { } }
-                case 17: if (is_index_1) { try { return invoke(context, method(context, oclass, jcb, code, cached_class_indices, value, 17, "get" + value, CallContext.class, int.class), object, jcb, context, Integer.parseInt(value_1)); } catch (NoSuchMethodException msme) { } }
-                case 18: if (is_index_1) { try { return invoke(context, method(context, oclass, jcb, code, cached_class_indices, value, 18, "tryGet" + value, CallContext.class, Long.class), object, jcb, context, Long.parseLong(value_1)); } catch (NoSuchMethodException msme) { } }
-                case 19: if (is_index_1) { try { return invoke(context, method(context, oclass, jcb, code, cached_class_indices, value, 19, "tryGet" + value, CallContext.class, long.class), object, jcb, context, Long.parseLong(value_1)); } catch (NoSuchMethodException msme) { } }
-                case 20: if (is_index_1) { try { return invoke(context, method(context, oclass, jcb, code, cached_class_indices, value, 20, "get" + value, CallContext.class, Long.class), object, jcb, context, Long.parseLong(value_1)); } catch (NoSuchMethodException msme) { } }
-                case 21: if (is_index_1) { try { return invoke(context, method(context, oclass, jcb, code, cached_class_indices, value, 21, "get" + value, CallContext.class, long.class), object, jcb, context, Long.parseLong(value_1)); } catch (NoSuchMethodException msme) { } }
-                case 22: if (is_index_1) { try { return invoke(context, method(context, oclass, jcb, code, cached_class_indices, value, 22, "tryGet" + value, Integer.class), object, jcb, Integer.parseInt(value_1)); } catch (NoSuchMethodException msme) { } }
-                case 23: if (is_index_1) { try { return invoke(context, method(context, oclass, jcb, code, cached_class_indices, value, 23, "tryGet" + value, int.class), object, jcb, Integer.parseInt(value_1)); } catch (NoSuchMethodException msme) { } }
-                case 24: if (is_index_1) { try { return invoke(context, method(context, oclass, jcb, code, cached_class_indices, value, 24, "get" + value, Integer.class), object, jcb, Integer.parseInt(value_1)); } catch (NoSuchMethodException msme) { } }
-                case 25: if (is_index_1) { try { return invoke(context, method(context, oclass, jcb, code, cached_class_indices, value, 25, "get" + value, int.class), object, jcb, Integer.parseInt(value_1)); } catch (NoSuchMethodException msme) { } }
-                case 26: if (is_index_1) { try { return invoke(context, method(context, oclass, jcb, code, cached_class_indices, value, 26, "tryGet" + value, Long.class), object, jcb, Long.parseLong(value_1)); } catch (NoSuchMethodException msme) { } }
-                case 27: if (is_index_1) { try { return invoke(context, method(context, oclass, jcb, code, cached_class_indices, value, 27, "tryGet" + value, long.class), object, jcb, Long.parseLong(value_1)); } catch (NoSuchMethodException msme) { } }
-                case 28: if (is_index_1) { try { return invoke(context, method(context, oclass, jcb, code, cached_class_indices, value, 28, "get" + value, Long.class), object, jcb, Long.parseLong(value_1)); } catch (NoSuchMethodException msme) { } }
-                case 29: if (is_index_1) { try { return invoke(context, method(context, oclass, jcb, code, cached_class_indices, value, 29, "get" + value, long.class), object, jcb, Long.parseLong(value_1)); } catch (NoSuchMethodException msme) { } }
+                case 14: if (is_index_1) { try { return invoke(context, oclass, method(context, oclass, jcb, code, cached_class_indices, value, 14, "tryGet" + value, CallContext.class, Integer.class), object, jcb, context, Integer.parseInt(value_1)); } catch (NoSuchMethodException msme) { } }
+                case 15: if (is_index_1) { try { return invoke(context, oclass, method(context, oclass, jcb, code, cached_class_indices, value, 15, "tryGet" + value, CallContext.class, int.class), object, jcb, context, Integer.parseInt(value_1)); } catch (NoSuchMethodException msme) { } }
+                case 16: if (is_index_1) { try { return invoke(context, oclass, method(context, oclass, jcb, code, cached_class_indices, value, 16, "get" + value, CallContext.class, Integer.class), object, jcb, context, Integer.parseInt(value_1)); } catch (NoSuchMethodException msme) { } }
+                case 17: if (is_index_1) { try { return invoke(context, oclass, method(context, oclass, jcb, code, cached_class_indices, value, 17, "get" + value, CallContext.class, int.class), object, jcb, context, Integer.parseInt(value_1)); } catch (NoSuchMethodException msme) { } }
+                case 18: if (is_index_1) { try { return invoke(context, oclass, method(context, oclass, jcb, code, cached_class_indices, value, 18, "tryGet" + value, CallContext.class, Long.class), object, jcb, context, Long.parseLong(value_1)); } catch (NoSuchMethodException msme) { } }
+                case 19: if (is_index_1) { try { return invoke(context, oclass, method(context, oclass, jcb, code, cached_class_indices, value, 19, "tryGet" + value, CallContext.class, long.class), object, jcb, context, Long.parseLong(value_1)); } catch (NoSuchMethodException msme) { } }
+                case 20: if (is_index_1) { try { return invoke(context, oclass, method(context, oclass, jcb, code, cached_class_indices, value, 20, "get" + value, CallContext.class, Long.class), object, jcb, context, Long.parseLong(value_1)); } catch (NoSuchMethodException msme) { } }
+                case 21: if (is_index_1) { try { return invoke(context, oclass, method(context, oclass, jcb, code, cached_class_indices, value, 21, "get" + value, CallContext.class, long.class), object, jcb, context, Long.parseLong(value_1)); } catch (NoSuchMethodException msme) { } }
+                case 22: if (is_index_1) { try { return invoke(context, oclass, method(context, oclass, jcb, code, cached_class_indices, value, 22, "tryGet" + value, Integer.class), object, jcb, Integer.parseInt(value_1)); } catch (NoSuchMethodException msme) { } }
+                case 23: if (is_index_1) { try { return invoke(context, oclass, method(context, oclass, jcb, code, cached_class_indices, value, 23, "tryGet" + value, int.class), object, jcb, Integer.parseInt(value_1)); } catch (NoSuchMethodException msme) { } }
+                case 24: if (is_index_1) { try { return invoke(context, oclass, method(context, oclass, jcb, code, cached_class_indices, value, 24, "get" + value, Integer.class), object, jcb, Integer.parseInt(value_1)); } catch (NoSuchMethodException msme) { } }
+                case 25: if (is_index_1) { try { return invoke(context, oclass, method(context, oclass, jcb, code, cached_class_indices, value, 25, "get" + value, int.class), object, jcb, Integer.parseInt(value_1)); } catch (NoSuchMethodException msme) { } }
+                case 26: if (is_index_1) { try { return invoke(context, oclass, method(context, oclass, jcb, code, cached_class_indices, value, 26, "tryGet" + value, Long.class), object, jcb, Long.parseLong(value_1)); } catch (NoSuchMethodException msme) { } }
+                case 27: if (is_index_1) { try { return invoke(context, oclass, method(context, oclass, jcb, code, cached_class_indices, value, 27, "tryGet" + value, long.class), object, jcb, Long.parseLong(value_1)); } catch (NoSuchMethodException msme) { } }
+                case 28: if (is_index_1) { try { return invoke(context, oclass, method(context, oclass, jcb, code, cached_class_indices, value, 28, "get" + value, Long.class), object, jcb, Long.parseLong(value_1)); } catch (NoSuchMethodException msme) { } }
+                case 29: if (is_index_1) { try { return invoke(context, oclass, method(context, oclass, jcb, code, cached_class_indices, value, 29, "get" + value, long.class), object, jcb, Long.parseLong(value_1)); } catch (NoSuchMethodException msme) { } }
 
                 case 30: InvalidLocatorSyntax.createAndThrow(context, "While resolving property locator '%(locator)', no property named '%(value)' was found at class '%(class)'", "locator", this.getTextLocatorValue(context), "value", value, "class", oclass.getName());
                          throw (InvalidLocator) null; // compiler insists
 
-                case 41: if (oclass.isArray()) {
+                case 41: if (object != null && oclass.isArray()) {
                              if (jcb != null) {
                                  if (code != null) { code[2] = "ARRAY"; } else { jcb.append(ds_code); }
                                  jcb.append("o = java.lang.reflect.Array.get(o, " + value + ");");
@@ -237,22 +241,22 @@ public class LocatorProperty extends Locator {
                              }
                              return java.lang.reflect.Array.get(object, Integer.parseInt(value));
                          }
-                case 42: try { return invoke(context, method(context, oclass, jcb, code, cached_class_indices, value, 42, "tryGet", CallContext.class, Integer.class), object, jcb, context, Integer.parseInt(value)); } catch (NoSuchMethodException msme) { }
-                case 43: try { return invoke(context, method(context, oclass, jcb, code, cached_class_indices, value, 43, "tryGet", CallContext.class, int.class), object, jcb, context, Integer.parseInt(value)); } catch (NoSuchMethodException msme) { }
-                case 44: try { return invoke(context, method(context, oclass, jcb, code, cached_class_indices, value, 44, "get", CallContext.class, Integer.class), object, jcb, context, Integer.parseInt(value)); } catch (NoSuchMethodException msme) { }
-                case 45: try { return invoke(context, method(context, oclass, jcb, code, cached_class_indices, value, 45, "get", CallContext.class, int.class), object, jcb, context, Integer.parseInt(value)); } catch (NoSuchMethodException msme) { }
-                case 46: try { return invoke(context, method(context, oclass, jcb, code, cached_class_indices, value, 46, "tryGet", CallContext.class, Long.class), object, jcb, context, Long.parseLong(value)); } catch (NoSuchMethodException msme) { }
-                case 47: try { return invoke(context, method(context, oclass, jcb, code, cached_class_indices, value, 47, "tryGet", CallContext.class, long.class), object, jcb, context, Long.parseLong(value)); } catch (NoSuchMethodException msme) { }
-                case 48: try { return invoke(context, method(context, oclass, jcb, code, cached_class_indices, value, 48, "get", CallContext.class, Long.class), object, jcb, context, Long.parseLong(value)); } catch (NoSuchMethodException msme) { }
-                case 49: try { return invoke(context, method(context, oclass, jcb, code, cached_class_indices, value, 49, "get", CallContext.class, long.class), object, jcb, context, Long.parseLong(value)); } catch (NoSuchMethodException msme) { }
-                case 50: try { return invoke(context, method(context, oclass, jcb, code, cached_class_indices, value, 50, "tryGet", Integer.class), object, jcb, Integer.parseInt(value)); } catch (NoSuchMethodException msme) { }
-                case 51: try { return invoke(context, method(context, oclass, jcb, code, cached_class_indices, value, 51, "tryGet", int.class), object, jcb, Integer.parseInt(value)); } catch (NoSuchMethodException msme) { }
-                case 52: try { return invoke(context, method(context, oclass, jcb, code, cached_class_indices, value, 52, "get", Integer.class), object, jcb, Integer.parseInt(value)); } catch (NoSuchMethodException msme) { }
-                case 53: try { return invoke(context, method(context, oclass, jcb, code, cached_class_indices, value, 53, "get", int.class), object, jcb, Integer.parseInt(value)); } catch (NoSuchMethodException msme) { }
-                case 54: try { return invoke(context, method(context, oclass, jcb, code, cached_class_indices, value, 54, "tryGet", Long.class), object, jcb, Long.parseLong(value)); } catch (NoSuchMethodException msme) { }
-                case 55: try { return invoke(context, method(context, oclass, jcb, code, cached_class_indices, value, 55, "tryGet", long.class), object, jcb, Long.parseLong(value)); } catch (NoSuchMethodException msme) { }
-                case 56: try { return invoke(context, method(context, oclass, jcb, code, cached_class_indices, value, 56, "get", Long.class), object, jcb, Long.parseLong(value)); } catch (NoSuchMethodException msme) { }
-                case 57: try { return invoke(context, method(context, oclass, jcb, code, cached_class_indices, value, 57, "get", long.class), object, jcb, Long.parseLong(value)); } catch (NoSuchMethodException msme) { }
+                case 42: try { return invoke(context, oclass, method(context, oclass, jcb, code, cached_class_indices, value, 42, "tryGet", CallContext.class, Integer.class), object, jcb, context, Integer.parseInt(value)); } catch (NoSuchMethodException msme) { }
+                case 43: try { return invoke(context, oclass, method(context, oclass, jcb, code, cached_class_indices, value, 43, "tryGet", CallContext.class, int.class), object, jcb, context, Integer.parseInt(value)); } catch (NoSuchMethodException msme) { }
+                case 44: try { return invoke(context, oclass, method(context, oclass, jcb, code, cached_class_indices, value, 44, "get", CallContext.class, Integer.class), object, jcb, context, Integer.parseInt(value)); } catch (NoSuchMethodException msme) { }
+                case 45: try { return invoke(context, oclass, method(context, oclass, jcb, code, cached_class_indices, value, 45, "get", CallContext.class, int.class), object, jcb, context, Integer.parseInt(value)); } catch (NoSuchMethodException msme) { }
+                case 46: try { return invoke(context, oclass, method(context, oclass, jcb, code, cached_class_indices, value, 46, "tryGet", CallContext.class, Long.class), object, jcb, context, Long.parseLong(value)); } catch (NoSuchMethodException msme) { }
+                case 47: try { return invoke(context, oclass, method(context, oclass, jcb, code, cached_class_indices, value, 47, "tryGet", CallContext.class, long.class), object, jcb, context, Long.parseLong(value)); } catch (NoSuchMethodException msme) { }
+                case 48: try { return invoke(context, oclass, method(context, oclass, jcb, code, cached_class_indices, value, 48, "get", CallContext.class, Long.class), object, jcb, context, Long.parseLong(value)); } catch (NoSuchMethodException msme) { }
+                case 49: try { return invoke(context, oclass, method(context, oclass, jcb, code, cached_class_indices, value, 49, "get", CallContext.class, long.class), object, jcb, context, Long.parseLong(value)); } catch (NoSuchMethodException msme) { }
+                case 50: try { return invoke(context, oclass, method(context, oclass, jcb, code, cached_class_indices, value, 50, "tryGet", Integer.class), object, jcb, Integer.parseInt(value)); } catch (NoSuchMethodException msme) { }
+                case 51: try { return invoke(context, oclass, method(context, oclass, jcb, code, cached_class_indices, value, 51, "tryGet", int.class), object, jcb, Integer.parseInt(value)); } catch (NoSuchMethodException msme) { }
+                case 52: try { return invoke(context, oclass, method(context, oclass, jcb, code, cached_class_indices, value, 52, "get", Integer.class), object, jcb, Integer.parseInt(value)); } catch (NoSuchMethodException msme) { }
+                case 53: try { return invoke(context, oclass, method(context, oclass, jcb, code, cached_class_indices, value, 53, "get", int.class), object, jcb, Integer.parseInt(value)); } catch (NoSuchMethodException msme) { }
+                case 54: try { return invoke(context, oclass, method(context, oclass, jcb, code, cached_class_indices, value, 54, "tryGet", Long.class), object, jcb, Long.parseLong(value)); } catch (NoSuchMethodException msme) { }
+                case 55: try { return invoke(context, oclass, method(context, oclass, jcb, code, cached_class_indices, value, 55, "tryGet", long.class), object, jcb, Long.parseLong(value)); } catch (NoSuchMethodException msme) { }
+                case 56: try { return invoke(context, oclass, method(context, oclass, jcb, code, cached_class_indices, value, 56, "get", Long.class), object, jcb, Long.parseLong(value)); } catch (NoSuchMethodException msme) { }
+                case 57: try { return invoke(context, oclass, method(context, oclass, jcb, code, cached_class_indices, value, 57, "get", long.class), object, jcb, Long.parseLong(value)); } catch (NoSuchMethodException msme) { }
 
                 case 58: InvalidLocatorSyntax.createAndThrow(context, "While resolving property locator '%(locator)', no appropriate getter (int/long) for index '%(value)' was found at class '%(class)'", "locator", this.getTextLocatorValue(context), "value", value, "class", oclass.getName());
                          throw (InvalidLocator) null; // compiler insists
@@ -341,8 +345,12 @@ public class LocatorProperty extends Locator {
         return mgc;
     }
 
-    protected Object invoke(CallContext context, Method method, Object object, StringBuilder jcb, Object... arguments)
+    protected Object invoke(CallContext context, Class oclass, Method method, Object object, StringBuilder jcb, Object... arguments)
                            throws IllegalAccessException, InvocationTargetException {
+        if (object == null && Modifier.isStatic(method.getModifiers()) == false) {
+            CustomaryContext.create((Context)context).throwPreConditionViolation(context, "While resolving property locator '%(locator)', a non static method was found, but no instance provided (null)", "locator", this.getTextLocatorValue(context));
+            throw (ExceptionPreConditionViolation) null; // compiler insists
+        }
         Object result = method.invoke(object, arguments);
         if (jcb != null) {
             jcb.append("(");

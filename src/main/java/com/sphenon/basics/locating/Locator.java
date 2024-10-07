@@ -1,7 +1,7 @@
 package com.sphenon.basics.locating;
 
 /****************************************************************************
-  Copyright 2001-2018 Sphenon GmbH
+  Copyright 2001-2024 Sphenon GmbH
 
   Licensed under the Apache License, Version 2.0 (the "License"); you may not
   use this file except in compliance with the License. You may obtain a copy
@@ -110,8 +110,7 @@ public class Locator implements Cloneable, Dumpable, ContextAware {
         } catch (LocatorTargetNotFound ltnf){
             return null;
         } catch (InvalidLocator il) {
-            il.printStackTrace();
-            CustomaryContext.create((Context)context).throwPreConditionViolation(context, il, "Cannot resolve locator, it is not valid");
+            CustomaryContext.create((Context)context).throwPreConditionViolation(context, il, "Cannot resolve invalid locator");
             throw (ExceptionPreConditionViolation) null; // compiler insists
         }
     }
@@ -120,12 +119,31 @@ public class Locator implements Cloneable, Dumpable, ContextAware {
         return tryResolve(context, text_locator, base_object, null);
     }
 
+    static public Object tryResolve(CallContext context, Object base_object, String... text_locators) {
+        for (String text_locator : text_locators) {
+            Object object = tryResolve(context, text_locator, base_object, null);
+            if (object != null) { return object; }
+        }
+        return null;
+    }
+
     static public Object tryResolve(CallContext context, String text_locator) {
         return tryResolve(context, text_locator, null, null);
     }
 
     static public Locator createLocator (CallContext context, String text_locator) throws InvalidLocator {
         return doCreateLocator(context, text_locator, false, null);
+    }
+
+    static public Locator tryCreateLocator (CallContext context, String text_locator) {
+        try {
+            return doCreateLocator(context, text_locator, false, null);
+        } catch (LocatorTargetNotFound ltnf){
+            return null;
+        } catch (InvalidLocator il) {
+            CustomaryContext.create((Context)context).throwPreConditionViolation(context, il, "Cannot create invalid locator");
+            throw (ExceptionPreConditionViolation) null; // compiler insists
+        }
     }
 
     static public Locator createLocator (CallContext context, String text_locator, String default_type) throws InvalidLocator {
@@ -250,6 +268,14 @@ public class Locator implements Cloneable, Dumpable, ContextAware {
         return this.locator_class_id;
     }
 
+    public String getFinalLocatorClassId (CallContext context) {
+        if (this.sub_locator != null) {
+            return this.sub_locator.getFinalLocatorClassId(context);
+        } else {
+            return this.getLocatorClassId(context);
+        }
+    }
+
     public String getLocatorClassParametrised (CallContext context) {
         return this.getLocatorClassId(context) + (this.locator_class_parameter_string == null ? "" : (":" + this.locator_class_parameter_string));
     }
@@ -264,8 +290,8 @@ public class Locator implements Cloneable, Dumpable, ContextAware {
     }
 
     public String getResolvedTextLocatorValue (CallContext context) throws InvalidLocator {
-        CustomaryContext.create((Context)context).throwLimitation(context, "Locator '%(locatorclass)' does not provide a resolved text locator value", "locatorclass", this.getClass().getName());
-        throw (ExceptionLimitation) null; // compiler insists
+        InvalidLocator.createAndThrow(context, "Locator '%(locatorclass)' does not provide a resolved text locator value", "locatorclass", this.getClass().getName());
+        throw (InvalidLocator) null; // compiler insists
     }
 
     /**
@@ -1110,6 +1136,14 @@ public class Locator implements Cloneable, Dumpable, ContextAware {
             }
         }
         return actual_locator_class_parameters.get(cp_name);
+    }
+
+    public String getFinalLocatorClassParameter(CallContext context, String cp_name) throws InvalidLocator {
+        if (this.sub_locator != null) {
+            return this.sub_locator.getFinalLocatorClassParameter(context, cp_name);
+        } else {
+            return this.getLocatorClassParameter(context, cp_name);
+        }
     }
 
     /* ------------------------------------------------------- */

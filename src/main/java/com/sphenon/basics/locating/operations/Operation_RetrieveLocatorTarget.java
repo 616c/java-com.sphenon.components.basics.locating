@@ -1,7 +1,7 @@
 package com.sphenon.basics.locating.operations;
 
 /****************************************************************************
-  Copyright 2001-2018 Sphenon GmbH
+  Copyright 2001-2024 Sphenon GmbH
 
   Licensed under the Apache License, Version 2.0 (the "License"); you may not
   use this file except in compliance with the License. You may obtain a copy
@@ -24,6 +24,7 @@ import com.sphenon.basics.customary.*;
 import com.sphenon.basics.monitoring.*;
 import com.sphenon.basics.operations.*;
 import com.sphenon.basics.operations.classes.*;
+import com.sphenon.basics.operations.factories.*;
 import com.sphenon.basics.data.*;
 
 import com.sphenon.basics.locating.*;
@@ -69,9 +70,9 @@ public class Operation_RetrieveLocatorTarget implements Operation {
                 cc.sendTrace(context, Notifier.CHECKPOINT, "Via locator '%(locator)', retrieved target '%(target)'", "locator", this.getTextLocator(context), "target", target);
             }
 
-            execution = Class_Execution.createExecutionSuccess(context);
+            execution = Factory_Execution.createExecutionSuccess(context);
         } catch (InvalidLocator il) {
-            execution = Class_Execution.createExecutionFailure(context, il);
+            execution = Factory_Execution.createExecutionFailure(context, il);
         }
 
         if (execution_sink != null) { execution_sink.set(context, execution); }
